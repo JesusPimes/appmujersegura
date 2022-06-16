@@ -91,7 +91,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ContactosPage": () => (/* binding */ ContactosPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 8806);
-/* harmony import */ var _C_Node_ionic_appMujer_node_modules_ngtools_webpack_src_loaders_direct_resource_js_contactos_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./contactos.page.html */ 7238);
+/* harmony import */ var _C_Node_ionic_appnldmujersegura_node_modules_ngtools_webpack_src_loaders_direct_resource_js_contactos_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./contactos.page.html */ 7238);
 /* harmony import */ var _contactos_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./contactos.page.scss */ 5580);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 4001);
 /* harmony import */ var src_services_user_servise__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/services/user.servise */ 1972);
@@ -251,7 +251,7 @@ ContactosPage.ctorParameters = () => [
 ContactosPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-contactos',
-        template: _C_Node_ionic_appMujer_node_modules_ngtools_webpack_src_loaders_direct_resource_js_contactos_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _C_Node_ionic_appnldmujersegura_node_modules_ngtools_webpack_src_loaders_direct_resource_js_contactos_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_contactos_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], ContactosPage);

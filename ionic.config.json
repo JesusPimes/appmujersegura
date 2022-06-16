@@ -1,0 +1,7 @@
+{
+  "name": "appnld",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

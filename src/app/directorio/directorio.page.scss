@@ -1,0 +1,50 @@
+ion-content{
+    --background: var(--ion-background-color, #f1f5f8)
+}
+
+
+ion-avatar{
+    --border-radius:5px;
+    height: 60px;
+    width: 60px;
+}
+
+.divRedondo{
+       background: white;
+      padding: 10px 10px 10px 10px;
+      border-radius: 10px 10px 10px 10px;
+      margin-top: 5px;
+    
+}
+.redondoIzq{ 
+     background: rgb(175, 17, 109);
+      padding: 10px 10px 10px 10px;
+      border-radius: 10px 0px 0px 10px;
+      margin-top: 5px;
+    
+    
+}
+.redondoIzq2{ 
+     background: rgb(175, 17, 109);
+      padding: 0px 0px 0px 0px;
+      border-radius: 10px 10px 10px 10px;
+      margin-top: 5px;
+    
+    
+}
+.redondoDer{ 
+     background-color: white;
+    //  padding: 10px 10px 10px 10px;
+      border-radius: 10px 10px 10px 10px;
+   
+    
+    
+}
+.h33{
+    font-family: monospace;
+    font-weight: bolder;
+    color: chocolate;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}

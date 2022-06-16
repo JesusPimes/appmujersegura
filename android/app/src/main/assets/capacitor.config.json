@@ -1,0 +1,6 @@
+{
+	"appId": "nld.mujersegura.app",
+	"appName": "Mujer Segura",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

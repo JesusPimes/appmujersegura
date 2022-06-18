@@ -211,9 +211,12 @@
           </ion-col>
         </ion-row>
         
+        
       </ion-grid>
     </ion-item>
      
+
+    
     
   
   </div>
@@ -288,8 +291,46 @@
       </ion-row>
     </ion-grid>
 
+
+
+      <ion-grid>
+        <ion-row class="redondoIzq2 my-3" (click)="solicitudJuridica()">
+          <ion-col size="2" class="redondoIzq" class="ion-align-self-center">
+      
+            <div  class="text-center" >
+              <ion-icon size="large" slot="start" name="document-text-outline" color="light"></ion-icon>
+            </div>
+      
+           
+      
+          </ion-col>
+          <ion-col size="10" class="redondoDer">
+            <div>
+              <ion-item lines="none">
+      
+                <ion-avatar slot="start">
+                  <img src="https://app.nld.gob.mx/assets/img/legal.png">
+                </ion-avatar>
+                <ion-label>
+      
+                  <h2 style="font-weight: bolder;">Atención Juridica</h2>
+                  <p>Atendemos tu solicitud</p>
+                </ion-label>
+      
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+      
+      </ion-grid>
+    
+
       <ion-grid *ngIf="habilitanoticias">
+      
         <ion-row >
+          <ion-col>
+              <h2 class="card-title colorr" style="font-size: 15px;margin-top: 0px;">EVENTOS</h2>
+          </ion-col>
           <ion-col *ngFor="let item of masnoticias" size="12">
             <img src="{{item.img}}" class="rounded w-100" />
           </ion-col>
@@ -300,6 +341,12 @@
     
 
   </div>
+   
+    
+   
+    
+    
+    
 <!--
 <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="call()">
   <ion-fab-button color="success">

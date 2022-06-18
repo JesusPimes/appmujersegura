@@ -5,6 +5,8 @@ import { ConexionesService } from '../../services/conexiones.service'
 import { SMS } from '@awesome-cordova-plugins/sms/ngx';
 import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { LoadingController } from '@ionic/angular';
+
 
 
 @Component({
@@ -36,7 +38,12 @@ export class ContactosPage implements OnInit {
   logeado=false;
   registrar = false;
   correoUser="";
-  constructor(private userS: UserService, private db: ConexionesService, private androidPermissions: AndroidPermissions, private geolocation: Geolocation) { }
+  isLoading = false;
+  constructor(private userS: UserService,
+              private db: ConexionesService,
+              private androidPermissions: AndroidPermissions, 
+              private geolocation: Geolocation,
+              public loadingController: LoadingController) { }
 
   ngOnInit() {
 
@@ -79,8 +86,10 @@ export class ContactosPage implements OnInit {
       this.registrar = true
   }
   registrarme(){
+    this.cargando()
     if(this.nombre=="" || this.correo=="" || this.password=="" || this.telefono==""){
         alert("Completar Datos")
+       this.dismissLoading();
     }else{
       let user = {
         correo: this.correo,
@@ -104,19 +113,22 @@ export class ContactosPage implements OnInit {
           console.log(resp)
         })
 
+       this.dismissLoading()
 
       }).catch((err) => {
         alert("Pruebe con otra contraseña")
+       this.dismissLoading()
       })
     }
     
   }
   guardar(){
+    this.cargando()
     this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.SEND_SMS, this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION]).then(() => {
       this.geolocation.getCurrentPosition().then((resp) => {
           if (this.nombre1 == ""  || this.telefono1== "" || this.parentesco1 == "") {
             alert("Completar Datos Contacto1")
-            return false;
+          this.dismissLoading()
           }else{
           
 
@@ -124,7 +136,7 @@ export class ContactosPage implements OnInit {
             if (this.nombre2 != "" || this.parentesco2 != ""){
                if(this.telefono2==""){
                  alert("Completar Datos Contacto2")
-                 return false
+               this.dismissLoading()
                } 
               if (this.telefono2 != "") {
                   this.agrega()
@@ -144,11 +156,13 @@ export class ContactosPage implements OnInit {
             
           
       })
-    })
+   
+       })
      
   }
 
   agrega(){
+    this.cargando()
     let contacto = {
       nombre1: this.nombre1,
       telefono1: this.telefono1,
@@ -158,18 +172,22 @@ export class ContactosPage implements OnInit {
       parentesco2: this.parentesco2,
       correoUser: this.correoUser
     }
-
+    this.dismissLoading()
 
     this.db.addContactos(contacto).then((resp) => {
       console.log(resp)
       if (true) {
-        alert("Actualizado Correctamente")
-        this.ngOnInit()
+     //   alert("Actualizado Correctamente")
+       this.dismissLoading()
+      
+       // this.ngOnInit()
       }
+     //this.dismissLoading()
     })
   }
 
   logearse(){
+    this.cargando()
     let user = {
       correo: this.logCorreo,
       password: this.logPassword
@@ -178,7 +196,9 @@ export class ContactosPage implements OnInit {
     this.userS.login(user).then((resp) => {
      
      this.logeado = true;
+    this.dismissLoading()
     }).catch((err) => {
+     this.dismissLoading()
       alert("Verificar correo o contraseña")
     })
   }
@@ -188,4 +208,30 @@ export class ContactosPage implements OnInit {
     let result = pattern.test(event.key);
     return result;
   }
+
+  
+ 
+
+  async cargando() {
+    this.isLoading = true;
+    await this.loadingController.create({
+      message: 'Cargando...',
+      spinner: 'circles'
+    }).then(a => {
+    
+      a.present().then(() => {
+    
+        if (!this.isLoading) {
+          a.dismiss().then(() => console.log('abort laoding'));
+        }
+      });
+    });
+  
+  }
+
+  async dismissLoading() {
+    this.isLoading = false;
+    await this.loadingController.dismiss();
+  }
 }
+

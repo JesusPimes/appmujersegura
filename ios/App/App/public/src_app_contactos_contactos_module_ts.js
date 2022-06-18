@@ -91,13 +91,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ContactosPage": () => (/* binding */ ContactosPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 8806);
-/* harmony import */ var _C_Node_ionic_appMujer_node_modules_ngtools_webpack_src_loaders_direct_resource_js_contactos_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./contactos.page.html */ 7238);
+/* harmony import */ var _C_Node_ionic_appnldmujersegura_node_modules_ngtools_webpack_src_loaders_direct_resource_js_contactos_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./contactos.page.html */ 7238);
 /* harmony import */ var _contactos_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./contactos.page.scss */ 5580);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 4001);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 4001);
 /* harmony import */ var src_services_user_servise__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/services/user.servise */ 1972);
 /* harmony import */ var _services_conexiones_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/conexiones.service */ 8285);
 /* harmony import */ var _awesome_cordova_plugins_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @awesome-cordova-plugins/android-permissions/ngx */ 6204);
 /* harmony import */ var _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @awesome-cordova-plugins/geolocation/ngx */ 5732);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 8099);
+
 
 
 
@@ -107,11 +109,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ContactosPage = class ContactosPage {
-    constructor(userS, db, androidPermissions, geolocation) {
+    constructor(userS, db, androidPermissions, geolocation, loadingController) {
         this.userS = userS;
         this.db = db;
         this.androidPermissions = androidPermissions;
         this.geolocation = geolocation;
+        this.loadingController = loadingController;
         this.logCorreo = "";
         this.logPassword = "";
         this.nombre = "";
@@ -127,6 +130,7 @@ let ContactosPage = class ContactosPage {
         this.logeado = false;
         this.registrar = false;
         this.correoUser = "";
+        this.isLoading = false;
     }
     ngOnInit() {
         this.userS.isLoggedIn().then((user) => {
@@ -157,8 +161,10 @@ let ContactosPage = class ContactosPage {
         this.registrar = true;
     }
     registrarme() {
+        this.cargando();
         if (this.nombre == "" || this.correo == "" || this.password == "" || this.telefono == "") {
             alert("Completar Datos");
+            this.dismissLoading();
         }
         else {
             let user = {
@@ -176,23 +182,26 @@ let ContactosPage = class ContactosPage {
                 this.db.addUser(user).then((resp) => {
                     console.log(resp);
                 });
+                this.dismissLoading();
             }).catch((err) => {
                 alert("Pruebe con otra contraseña");
+                this.dismissLoading();
             });
         }
     }
     guardar() {
+        this.cargando();
         this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.SEND_SMS, this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION]).then(() => {
             this.geolocation.getCurrentPosition().then((resp) => {
                 if (this.nombre1 == "" || this.telefono1 == "" || this.parentesco1 == "") {
                     alert("Completar Datos Contacto1");
-                    return false;
+                    this.dismissLoading();
                 }
                 else {
                     if (this.nombre2 != "" || this.parentesco2 != "") {
                         if (this.telefono2 == "") {
                             alert("Completar Datos Contacto2");
-                            return false;
+                            this.dismissLoading();
                         }
                         if (this.telefono2 != "") {
                             this.agrega();
@@ -208,6 +217,7 @@ let ContactosPage = class ContactosPage {
         });
     }
     agrega() {
+        this.cargando();
         let contacto = {
             nombre1: this.nombre1,
             telefono1: this.telefono1,
@@ -217,22 +227,28 @@ let ContactosPage = class ContactosPage {
             parentesco2: this.parentesco2,
             correoUser: this.correoUser
         };
+        this.dismissLoading();
         this.db.addContactos(contacto).then((resp) => {
             console.log(resp);
             if (true) {
-                alert("Actualizado Correctamente");
-                this.ngOnInit();
+                //   alert("Actualizado Correctamente")
+                this.dismissLoading();
+                // this.ngOnInit()
             }
+            //this.dismissLoading()
         });
     }
     logearse() {
+        this.cargando();
         let user = {
             correo: this.logCorreo,
             password: this.logPassword
         };
         this.userS.login(user).then((resp) => {
             this.logeado = true;
+            this.dismissLoading();
         }).catch((err) => {
+            this.dismissLoading();
             alert("Verificar correo o contraseña");
         });
     }
@@ -241,17 +257,39 @@ let ContactosPage = class ContactosPage {
         let result = pattern.test(event.key);
         return result;
     }
+    cargando() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+            this.isLoading = true;
+            yield this.loadingController.create({
+                message: 'Cargando...',
+                spinner: 'circles'
+            }).then(a => {
+                a.present().then(() => {
+                    if (!this.isLoading) {
+                        a.dismiss().then(() => console.log('abort laoding'));
+                    }
+                });
+            });
+        });
+    }
+    dismissLoading() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+            this.isLoading = false;
+            yield this.loadingController.dismiss();
+        });
+    }
 };
 ContactosPage.ctorParameters = () => [
     { type: src_services_user_servise__WEBPACK_IMPORTED_MODULE_2__.UserService },
     { type: _services_conexiones_service__WEBPACK_IMPORTED_MODULE_3__.ConexionesService },
     { type: _awesome_cordova_plugins_android_permissions_ngx__WEBPACK_IMPORTED_MODULE_4__.AndroidPermissions },
-    { type: _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__.Geolocation }
+    { type: _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__.Geolocation },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.LoadingController }
 ];
 ContactosPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-contactos',
-        template: _C_Node_ionic_appMujer_node_modules_ngtools_webpack_src_loaders_direct_resource_js_contactos_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _C_Node_ionic_appnldmujersegura_node_modules_ngtools_webpack_src_loaders_direct_resource_js_contactos_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_contactos_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], ContactosPage);

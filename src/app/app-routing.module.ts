@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'contactos',
     loadChildren: () => import('./contactos/contactos.module').then( m => m.ContactosPageModule)
+  },
+  {
+    path: 'juridica',
+    loadChildren: () => import('./juridica/juridica.module').then( m => m.JuridicaPageModule)
   }
 ];
 

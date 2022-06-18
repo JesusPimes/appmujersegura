@@ -62,6 +62,10 @@ const routes = [
     {
         path: 'contactos',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_contactos_contactos_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./contactos/contactos.module */ 4308)).then(m => m.ContactosPageModule)
+    },
+    {
+        path: 'juridica',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_juridica_juridica_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./juridica/juridica.module */ 9022)).then(m => m.JuridicaPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -402,6 +406,24 @@ let ConexionesService = class ConexionesService {
         };
         var promise = new Promise((resolve, reject) => {
             this.http.post('https://app.nld.gob.mx/assets/php/addReporte.php', data, httpOptions).subscribe((resp) => {
+                if (resp.status) {
+                    resolve(true);
+                }
+                else {
+                    resolve(false);
+                }
+            });
+        });
+        return promise;
+    }
+    addReporte2(data) {
+        const httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpHeaders({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        };
+        var promise = new Promise((resolve, reject) => {
+            this.http.post('https://app.nld.gob.mx/assets/php/addReporte2.php', data, httpOptions).subscribe((resp) => {
                 if (resp.status) {
                     resolve(true);
                 }

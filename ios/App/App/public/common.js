@@ -279,7 +279,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "SubmodulosPage": () => (/* binding */ SubmodulosPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 8806);
-/* harmony import */ var _C_Node_ionic_appMujer_node_modules_ngtools_webpack_src_loaders_direct_resource_js_submodulos_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./submodulos.page.html */ 4020);
+/* harmony import */ var _C_Node_ionic_appnldmujersegura_node_modules_ngtools_webpack_src_loaders_direct_resource_js_submodulos_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./submodulos.page.html */ 4020);
 /* harmony import */ var _submodulos_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./submodulos.page.scss */ 317);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 4001);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ 8099);
@@ -323,7 +323,7 @@ SubmodulosPage.ctorParameters = () => [
 SubmodulosPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-submodulos',
-        template: _C_Node_ionic_appMujer_node_modules_ngtools_webpack_src_loaders_direct_resource_js_submodulos_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _C_Node_ionic_appnldmujersegura_node_modules_ngtools_webpack_src_loaders_direct_resource_js_submodulos_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_submodulos_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], SubmodulosPage);

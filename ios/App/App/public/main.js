@@ -62,6 +62,10 @@ const routes = [
     {
         path: 'contactos',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_contactos_contactos_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./contactos/contactos.module */ 4308)).then(m => m.ContactosPageModule)
+    },
+    {
+        path: 'juridica',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_juridica_juridica_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./juridica/juridica.module */ 9022)).then(m => m.JuridicaPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -91,7 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "AppComponent": () => (/* binding */ AppComponent)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 8806);
-/* harmony import */ var _C_Node_ionic_appMujer_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./app.component.html */ 5158);
+/* harmony import */ var _C_Node_ionic_appnldmujersegura_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./app.component.html */ 5158);
 /* harmony import */ var _app_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.scss */ 836);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 4001);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 8099);
@@ -142,7 +146,7 @@ AppComponent.ctorParameters = () => [
 AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-root',
-        template: _C_Node_ionic_appMujer_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _C_Node_ionic_appnldmujersegura_node_modules_ngtools_webpack_src_loaders_direct_resource_js_app_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_app_component_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], AppComponent);
@@ -402,6 +406,24 @@ let ConexionesService = class ConexionesService {
         };
         var promise = new Promise((resolve, reject) => {
             this.http.post('https://app.nld.gob.mx/assets/php/addReporte.php', data, httpOptions).subscribe((resp) => {
+                if (resp.status) {
+                    resolve(true);
+                }
+                else {
+                    resolve(false);
+                }
+            });
+        });
+        return promise;
+    }
+    addReporte2(data) {
+        const httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpHeaders({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        };
+        var promise = new Promise((resolve, reject) => {
+            this.http.post('https://app.nld.gob.mx/assets/php/addReporte2.php', data, httpOptions).subscribe((resp) => {
                 if (resp.status) {
                     resolve(true);
                 }

@@ -4,7 +4,7 @@ import { MenuController, NavController, Platform, ToastController } from '@ionic
 import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { SMS } from '@awesome-cordova-plugins/sms/ngx';
-
+import { LoadingController } from '@ionic/angular';
 
 import { Browser } from '@capacitor/browser';
 import { ConexionesService } from '../../services/conexiones.service'
@@ -66,6 +66,9 @@ export class HomePage implements OnInit {
   circleDasharray = 2 * Math.PI * circleR;
   enviado = false;
   email:any;
+  isLoading = false;
+
+  
   constructor(private sanitizer: DomSanitizer, 
               public menuCtrl: MenuController, 
               private navCtrl: NavController,
@@ -75,8 +78,9 @@ export class HomePage implements OnInit {
               private androidPermissions: AndroidPermissions,
               private geolocation: Geolocation,
               private sms: SMS,
-              private userService:UserService
-   
+              private userService:UserService,
+              public loadingController: LoadingController          
+    
      ) { }
   
   ngOnInit() {
@@ -243,17 +247,20 @@ export class HomePage implements OnInit {
 
   }
   enviaMsj(){
-  
+  this.cargando()
     
           if(this.contactos=true && this.logeado==true){
           const mapsGeoloc = "http://www.google.com/maps/place/";
           this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.SEND_SMS, this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION]).then(() => {
                 this.geolocation.getCurrentPosition().then((resp) => {
                   var URLparameter = resp.coords.latitude + "," + resp.coords.longitude + "/";
+                  
+
                 
 
                   if(this.totalContactos==1){
                     var phoneNumber = "+52" + this.telefono1;
+
                   }
                   if (this.totalContactos == 2) {
                     var phoneNumber = "+52" + this.telefono1;
@@ -272,14 +279,20 @@ export class HomePage implements OnInit {
 
 
                   if (this.totalContactos == 1) {
+                    this.dismissLoading()
                         this.sms.send(phoneNumber, textMessage, options).then((resp) => {
                        //   alert(JSON.stringify(resp))
                        alert("Enviada Correctamente")
                         }).catch(error => {
                          //   alert(JSON.stringify(error))
                         });
+
+
+                 
+
                   }
                   if (this.totalContactos == 2) {
+                    this.dismissLoading()
                     this.sms.send(phoneNumber, textMessage, options).then((resp) => {
                     // alert(JSON.stringify(resp))
                       this.sms.send(phoneNumber2, textMessage, options).then((resp) => {
@@ -292,6 +305,8 @@ export class HomePage implements OnInit {
                     });
                   
                   }
+
+              
 
 
                   this.enviado = true;
@@ -318,6 +333,9 @@ export class HomePage implements OnInit {
 
   denuncia(){
     this.navCtrl.navigateForward('denuncia')
+  }
+  solicitudJuridica() {
+    this.navCtrl.navigateForward('juridica')
   }
   abreNoticia(item){
     let navigationExtras: NavigationExtras = {
@@ -400,6 +418,28 @@ async abrePagina(pagina){
       this.logeado= false
 
     });
+  }
+
+  async cargando() {
+    this.isLoading = true;
+    await this.loadingController.create({
+      message: 'Cargando...',
+      spinner: 'circles'
+    }).then(a => {
+
+      a.present().then(() => {
+
+        if (!this.isLoading) {
+          a.dismiss().then(() => console.log('abort laoding'));
+        }
+      });
+    });
+
+  }
+
+  async dismissLoading() {
+    this.isLoading = false;
+    await this.loadingController.dismiss();
   }
 }
 function onSuccess(result) {

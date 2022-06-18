@@ -167,6 +167,28 @@ export class ConexionesService {
             });
             return promise;
           }
+          addReporte2(data: any) {
+            const httpOptions = {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/x-www-form-urlencoded'
+              })
+            };
+
+            var promise = new Promise((resolve, reject) => {
+              this.http.post('https://app.nld.gob.mx/assets/php/addReporte2.php',
+                data, httpOptions).subscribe((resp: any) => {
+
+                  if (resp.status) {
+                    resolve(true)
+                  } else {
+                    resolve(false)
+                  }
+
+                })
+
+            });
+            return promise;
+          }
           addUser(data: any) {
             const httpOptions = {
               headers: new HttpHeaders({

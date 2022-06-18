@@ -91,7 +91,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ModulosPage": () => (/* binding */ ModulosPage)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 8806);
-/* harmony import */ var _C_Node_ionic_appMujer_node_modules_ngtools_webpack_src_loaders_direct_resource_js_modulos_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./modulos.page.html */ 8646);
+/* harmony import */ var _C_Node_ionic_appnldmujersegura_node_modules_ngtools_webpack_src_loaders_direct_resource_js_modulos_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/@ngtools/webpack/src/loaders/direct-resource.js!./modulos.page.html */ 8646);
 /* harmony import */ var _modulos_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modulos.page.scss */ 4204);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 4001);
 /* harmony import */ var _services_conexiones_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/conexiones.service */ 8285);
@@ -160,7 +160,7 @@ ModulosPage.ctorParameters = () => [
 ModulosPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-modulos',
-        template: _C_Node_ionic_appMujer_node_modules_ngtools_webpack_src_loaders_direct_resource_js_modulos_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+        template: _C_Node_ionic_appnldmujersegura_node_modules_ngtools_webpack_src_loaders_direct_resource_js_modulos_page_html__WEBPACK_IMPORTED_MODULE_0__["default"],
         styles: [_modulos_page_scss__WEBPACK_IMPORTED_MODULE_1__]
     })
 ], ModulosPage);

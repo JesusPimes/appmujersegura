@@ -200,3 +200,49 @@ ion-avatar{
   font-weight: 600;
   fill:#333;
 }
+
+
+
+
+
+/*asesoria legal modulo*/
+ion-avatar {
+  --border-radius: 5px;
+  height: 60px;
+  width: 60px;
+}
+
+.divRedondo {
+  background: white;
+  padding: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  margin-top: 5px;
+
+}
+
+.redondoIzq {
+  background: rgb(175, 17, 109);
+  padding: 10px 10px 10px 10px;
+  border-radius: 10px 0px 0px 10px;
+  margin-top: 5px;
+
+
+}
+
+.redondoIzq2 {
+  background: rgb(175, 17, 109);
+  padding: 0px 0px 0px 0px;
+  border-radius: 10px 10px 10px 10px;
+  margin-top: 5px;
+
+
+}
+
+.redondoDer {
+  background-color: white;
+  //  padding: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+
+
+
+}
